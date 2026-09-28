@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lou-Anne Hud — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#12201b;
+    --ink-soft:#48594f;
+    --green:#0f6b45;
+    --green-dark:#0b4d32;
+    --green-pale:#e7f3ec;
+    --bg:#fbfaf7;
+    --card:#ffffff;
+    --line:#e7e3d8;
+    --blue-tag:#eaf1fb;
+    --blue-tag-ink:#2a5fa8;
+    --amber-tag:#fdf3e3;
+    --amber-tag-ink:#8a5a12;
+    --radius:18px;
+    --shadow:0 1px 2px rgba(18,32,27,.04), 0 10px 30px -14px rgba(18,32,27,.14);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Inter',system-ui,sans-serif;
+    line-height:1.55;
+  }
+  h1,h2,h3,.display{
+    font-family:'Manrope',system-ui,sans-serif;
+    color:var(--ink);
+    margin:0;
+  }
+  .wrap{max-width:1040px;margin:0 auto;padding:0 28px;}
+  a{color:inherit;}
+
+  /* HERO */
+  .hero{
+    padding:64px 0 40px;
+    border-bottom:1px solid var(--line);
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.4fr 1fr;
+    gap:48px;
+    align-items:center;
+  }
+  .eyebrow{
+    font-size:14px;
+    font-weight:600;
+    color:var(--green);
+    letter-spacing:.02em;
+    margin-bottom:10px;
+  }
+  .hero h1{
+    font-size:44px;
+    font-weight:800;
+    letter-spacing:-0.02em;
+    margin-bottom:10px;
+  }
+  .hero .role{
+    font-size:17px;
+    font-weight:600;
+    color:var(--green-dark);
+    margin-bottom:16px;
+  }
+  .hero p.pitch{
+    font-size:16px;
+    color:var(--ink-soft);
+    max-width:52ch;
+    margin-bottom:26px;
+  }
+  .contact-row{
+    display:flex;
+    flex-wrap:wrap;
+    gap:22px;
+    margin-bottom:26px;
+    font-size:14.5px;
+    color:var(--ink-soft);
+  }
+  .contact-row span{display:inline-flex;align-items:center;gap:7px;}
+  .contact-row svg{width:16px;height:16px;flex:none;stroke:var(--green-dark);}
+  .cta-row{display:flex;flex-wrap:wrap;gap:12px;}
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:11px 18px;
+    border-radius:11px;
+    font-size:14.5px;
+    font-weight:600;
+    text-decoration:none;
+    border:1px solid var(--line);
+    background:#fff;
+    color:var(--ink);
+    transition:transform .15s ease, border-color .15s ease;
+  }
+  .btn:hover{transform:translateY(-1px); border-color:var(--green);}
+  .btn.primary{
+    background:var(--green-dark);
+    border-color:var(--green-dark);
+    color:#fff;
+  }
+  .btn svg{width:16px;height:16px;}
+
+  /* hero visual */
+  .hero-visual{
+    position:relative;
+    aspect-ratio:1/1;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .hero-visual svg{width:100%;height:100%;}
+
+  /* SECTIONS */
+  section{padding:56px 0;}
+  section.projects{padding-bottom:16px;}
+  .section-head{
+    display:flex;
+    align-items:baseline;
+    gap:10px;
+    margin-bottom:26px;
+  }
+  .section-head .tag-icon{
+    width:30px;height:30px;
+    border-radius:8px;
+    background:var(--green-pale);
+    display:flex;align-items:center;justify-content:center;
+    flex:none;
+  }
+  .section-head .tag-icon svg{width:16px;height:16px;stroke:var(--green-dark);}
+  .section-head h2{
+    font-size:13px;
+    font-weight:700;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+  }
+
+  /* project cards */
+  .project-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:22px;
+  }
+  .card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    overflow:hidden;
+    box-shadow:var(--shadow);
+    display:flex;
+    flex-direction:column;
+  }
+  .card-banner{
+    position:relative;
+    height:150px;
+    display:flex;
+    align-items:flex-end;
+    padding:16px 18px;
+  }
+  .card-banner svg{position:absolute; inset:0; width:100%; height:100%;}
+  .badge{
+    position:absolute;
+    top:14px; left:14px;
+    background:rgba(255,255,255,.92);
+    color:var(--green-dark);
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:.05em;
+    text-transform:uppercase;
+    padding:5px 10px;
+    border-radius:100px;
+    z-index:2;
+  }
+  .card-body{padding:20px 22px 22px;display:flex;flex-direction:column;gap:10px;flex:1;}
+  .card-body h3{
+    font-size:17px;
+    font-weight:700;
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .card-body p{
+    font-size:14px;
+    color:var(--ink-soft);
+    margin:0;
+  }
+  .stack{display:flex;flex-wrap:wrap;gap:8px;margin-top:2px;}
+  .pill{
+    font-size:12px;
+    font-weight:600;
+    padding:5px 11px;
+    border-radius:100px;
+    background:var(--blue-tag);
+    color:var(--blue-tag-ink);
+  }
+  .note-box{
+    background:var(--green-pale);
+    border-radius:10px;
+    padding:10px 13px;
+    font-size:12.5px;
+    color:var(--green-dark);
+    line-height:1.5;
+  }
+  .note-box b{font-weight:700;}
+  .card-link{
+    margin-top:auto;
+    padding-top:6px;
+    font-size:14px;
+    font-weight:600;
+    color:var(--green-dark);
+    text-decoration:none;
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+  }
+  .card-link svg{width:14px;height:14px;}
+  .card-link.disabled{color:#9aa79f; pointer-events:none;}
+
+  /* skills */
+  .skills-grid{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:0;
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    background:var(--card);
+    overflow:hidden;
+    box-shadow:var(--shadow);
+  }
+  .skill-col{
+    padding:22px 20px;
+    border-right:1px solid var(--line);
+  }
+  .skill-col:last-child{border-right:none;}
+  .skill-col h4{
+    display:flex;align-items:center;gap:8px;
+    font-size:14px;font-weight:700;margin-bottom:12px;
+  }
+  .skill-col h4 svg{width:16px;height:16px;stroke:var(--green-dark);}
+  .skill-col ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:7px;}
+  .skill-col li{font-size:13.5px;color:var(--ink-soft);}
+
+  /* about + contact */
+  .split{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:22px;
+  }
+  .info-card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:26px 26px;
+    box-shadow:var(--shadow);
+  }
+  .info-card h3{
+    display:flex;align-items:center;gap:9px;
+    font-size:14px;font-weight:700;margin-bottom:14px;
+  }
+  .info-card h3 svg{width:17px;height:17px;stroke:var(--green-dark);}
+  .info-card p{font-size:14.5px;color:var(--ink-soft);margin:0 0 12px;}
+  .info-card p:last-child{margin-bottom:0;}
+  .contact-list{display:flex;flex-direction:column;gap:10px;font-size:14px;color:var(--ink-soft);margin-bottom:16px;}
+  .contact-list span{display:flex;align-items:center;gap:9px;}
+  .contact-list svg{width:15px;height:15px;stroke:var(--green-dark);flex:none;}
+  .social-row{display:flex;gap:10px;}
+  .social-row a{
+    width:36px;height:36px;
+    border-radius:9px;
+    background:var(--green-dark);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .social-row svg{width:16px;height:16px;stroke:#fff;}
+
+  footer{
+    text-align:center;
+    padding:30px 0 48px;
+    font-size:13px;
+    color:#8b968f;
+  }
+
+  @media (max-width:760px){
+    .hero-grid{grid-template-columns:1fr;}
+    .hero-visual{display:none;}
+    .project-grid{grid-template-columns:1fr;}
+    .skills-grid{grid-template-columns:1fr 1fr;}
+    .skill-col{border-right:none;border-bottom:1px solid var(--line);}
+    .split{grid-template-columns:1fr;}
+    .hero h1{font-size:32px;}
+  }
+  @media (max-width:640px){
+    section.wrap > .card[style*="row"]{flex-direction:column !important;}
+    section.wrap > .card[style*="row"] .card-banner{width:100% !important; height:110px !important;}
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap hero">
+  <div class="hero-grid">
+    <div>
+      <div class="eyebrow">Portfolio</div>
+      <h1>Lou-Anne Hud</h1>
+      <div class="role">Data Analyst · Data Scientist · Innovation &amp; Transformation digitale</div>
+      <p class="pitch">Je transforme les données en solutions concrètes et développe des applications et dashboards interactifs pour aider à la prise de décision.</p>
+      <div class="contact-row">
+        <span><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-7.2 8-13a8 8 0 1 0-16 0c0 5.8 8 13 8 13Z"/><circle cx="12" cy="9" r="3"/></svg>Houilles (78)</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>hud.lou-anne@laposte.net</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.5 2.1L8 9.7a16 16 0 0 0 6.3 6.3l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.7 2Z"/></svg>06 52 17 21 41</span>
+      </div>
+      <div class="cta-row">
+        <a class="btn primary" href="#">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
+          Télécharger mon CV
+        </a>
+        <a class="btn" href="#">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/><path d="M8 21v-7a3 3 0 0 1 6 0v7"/><path d="M14 21v-6a3 3 0 0 1 6 0v6"/></svg>
+          LinkedIn
+        </a>
+        <a class="btn" href="#">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.4 4.4 0 0 0-1.1-3.4c3.7-.4 7.6-1.8 7.6-8.2a6.3 6.3 0 0 0-1.7-4.4 5.9 5.9 0 0 0-.2-4.4s-1.4-.4-4.5 1.7a15.3 15.3 0 0 0-8.2 0C4 -.3 2.6.1 2.6.1a5.9 5.9 0 0 0-.2 4.4A6.3 6.3 0 0 0 .7 8.9c0 6.4 3.9 7.8 7.6 8.2A4.4 4.4 0 0 0 7.2 20v2"/></svg>
+          GitHub
+        </a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <svg viewBox="0 0 320 320" fill="none">
+        <circle cx="160" cy="160" r="150" fill="#eef6f1"/>
+        <g opacity=".5">
+          <circle cx="270" cy="60" r="3" fill="#0f6b45"/>
+          <circle cx="290" cy="80" r="3" fill="#0f6b45"/>
+          <circle cx="270" cy="100" r="3" fill="#0f6b45"/>
+          <circle cx="250" cy="60" r="3" fill="#0f6b45"/>
+          <circle cx="250" cy="80" r="3" fill="#0f6b45"/>
+          <circle cx="250" cy="100" r="3" fill="#0f6b45"/>
+          <circle cx="290" cy="60" r="3" fill="#0f6b45"/>
+          <circle cx="290" cy="100" r="3" fill="#0f6b45"/>
+          <circle cx="270" cy="80" r="3" fill="#0f6b45"/>
+        </g>
+        <rect x="60" y="110" width="200" height="130" rx="10" fill="#12201b"/>
+        <rect x="72" y="122" width="176" height="98" rx="4" fill="#ffffff"/>
+        <rect x="86" y="156" width="14" height="46" fill="#bfe3cf"/>
+        <rect x="106" y="140" width="14" height="62" fill="#0f6b45"/>
+        <rect x="126" y="166" width="14" height="36" fill="#bfe3cf"/>
+        <rect x="146" y="148" width="14" height="54" fill="#0f6b45"/>
+        <polyline points="180,190 198,160 214,175 236,132" fill="none" stroke="#0f6b45" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="236" cy="132" r="5" fill="#0f6b45"/>
+        <rect x="140" y="240" width="40" height="10" rx="3" fill="#4b5a52"/>
+        <rect x="110" y="250" width="100" height="8" rx="4" fill="#dfe6e1"/>
+        <rect x="230" y="205" width="30" height="42" rx="4" fill="#0f6b45"/>
+        <path d="M245 205c0-14 12-18 12-30" stroke="#0f6b45" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <path d="M245 205c-10-4-14-14-8-24" stroke="#0f6b45" stroke-width="3" fill="none" stroke-linecap="round"/>
+      </svg>
+    </div>
+  </div>
+</div>
+
+<section class="projects wrap">
+  <div class="section-head">
+    <div class="tag-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg></div>
+    <h2>Projets</h2>
+  </div>
+
+  <div class="project-grid">
+
+    <div class="card">
+      <div class="card-banner" style="background:linear-gradient(135deg,#12201b,#0f6b45);">
+        <span class="badge">Application web</span>
+        <svg viewBox="0 0 200 100" preserveAspectRatio="none" style="opacity:.5">
+          <line x1="10" y1="10" x2="190" y2="10" stroke="#fff" stroke-width="0.5"/>
+          <line x1="10" y1="30" x2="190" y2="30" stroke="#fff" stroke-width="0.5"/>
+          <line x1="10" y1="50" x2="190" y2="50" stroke="#fff" stroke-width="0.5"/>
+          <line x1="10" y1="70" x2="190" y2="70" stroke="#fff" stroke-width="0.5"/>
+          <line x1="10" y1="90" x2="190" y2="90" stroke="#fff" stroke-width="0.5"/>
+        </svg>
+      </div>
+      <div class="card-body">
+        <h3>♟️ Let's Go — Entraînement au jeu de Go</h3>
+        <p>Plateforme de recommandation d'exercices tactiques personnalisés, générés à partir de l'analyse des parties jouées, avec restitution des KPIs de progression (taux de réussite, tendances) sous forme de graphiques interactifs.</p>
+        <div class="stack">
+          <span class="pill">Python</span><span class="pill">Streamlit</span><span class="pill">Pandas</span>
+        </div>
+        <div class="note-box"><b>Compte de démonstration</b><br>Pseudo : Margo · Mot de passe : letsgo</div>
+        <a class="card-link" href="https://projetletsgo-ux2ohi8hqjylltawjmvdmg.streamlit.app/" target="_blank">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.5.5l2-2a5 5 0 0 0-7-7l-1.5 1.5"/><path d="M14 11a5 5 0 0 0-7.5-.5l-2 2a5 5 0 0 0 7 7l1.5-1.5"/></svg>
+          Tester l'application
+        </a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-banner" style="background:linear-gradient(135deg,#0b4d32,#1a8a57);">
+        <span class="badge">Application web</span>
+      </div>
+      <div class="card-body">
+        <h3>🎬 Système de recommandation de films</h3>
+        <p>Application de recommandation de films basée sur les préférences utilisateur, avec exploration du catalogue et suggestions personnalisées.</p>
+        <div class="stack">
+          <span class="pill">Python</span><span class="pill">Scikit-learn</span><span class="pill">Streamlit</span>
+        </div>
+        <a class="card-link" href="https://finalapppy-mbbfxun2ydcewqckq6fpre.streamlit.app/" target="_blank">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.5.5l2-2a5 5 0 0 0-7-7l-1.5 1.5"/><path d="M14 11a5 5 0 0 0-7.5-.5l-2 2a5 5 0 0 0 7 7l1.5-1.5"/></svg>
+          Tester l'application
+        </a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-banner" style="background:linear-gradient(135deg,#3a1220,#7a2740);">
+        <span class="badge" style="color:#7a2740;">Dashboard · Power BI</span>
+      </div>
+      <div class="card-body">
+        <h3>🍷 Recommandation tarifaire — Domaine des Croix</h3>
+        <p>Analyse du marché américain du vin pour recommander un positionnement tarifaire. Préparation des données, analyse exploratoire et dashboard Power BI.</p>
+        <div class="stack">
+          <span class="pill">Python</span><span class="pill">Pandas</span><span class="pill">Power BI</span><span class="pill">DAX</span>
+        </div>
+        <a class="card-link disabled" href="#">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+          Voir la présentation du projet
+        </a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-banner" style="background:linear-gradient(135deg,#12203a,#2a5fa8);">
+        <span class="badge" style="color:#2a5fa8;">Dashboard · Power BI</span>
+      </div>
+      <div class="card-body">
+        <h3>🚴 Analyse des ventes de vélos</h3>
+        <p>Dashboard interactif pour suivre les performances commerciales, analyser les tendances et identifier les segments clés.</p>
+        <div class="stack">
+          <span class="pill">Power BI</span><span class="pill">DAX</span><span class="pill">Power Query</span>
+        </div>
+        <a class="card-link disabled" href="#">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+          Voir le dashboard
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="section-head">
+    <div class="tag-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/></svg></div>
+    <h2>Mémoire</h2>
+  </div>
+
+  <div class="card" style="flex-direction:row; align-items:stretch;">
+    <div class="card-banner" style="width:220px; height:auto; flex:none; background:linear-gradient(160deg,#0b4d32,#12203a); display:flex; align-items:center; justify-content:center;">
+      <svg viewBox="0 0 24 24" width="56" height="56" fill="none" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" opacity=".9"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/></svg>
+    </div>
+    <div class="card-body" style="padding:24px 26px;">
+      <h3>🎓 Les capteurs inertiels dans la mobilité urbaine</h3>
+      <p style="font-size:13px; font-weight:600; color:var(--green-dark); text-transform:uppercase; letter-spacing:.03em; margin-bottom:-4px;">Innovations, opportunités et défis — Mémoire de Master TTE, 2024</p>
+      <p>Étude de l'impact des capteurs inertiels des smartphones (accéléromètre, gyroscope, magnétomètre) sur la mobilité urbaine : analyse des comportements de conduite, gestion de la multimodalité et mobilité indoor, à travers le concept de <em>smartphone as a sensor</em>.</p>
+      <div class="stack">
+        <span class="pill">Big Data</span><span class="pill">Mobilité urbaine</span><span class="pill">Smartphone as a sensor</span><span class="pill">Confidentialité des données</span>
+      </div>
+      <a class="card-link" href="Memoire_Lou-Anne_HUD_Capteurs-Inertiels-Mobilite-Urbaine.pdf" target="_blank">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
+        Lire le mémoire (PDF)
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="section-head">
+    <div class="tag-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m14.7 6.3 1 1a1 1 0 0 0 1.4 0l1.6-1.6a1 1 0 0 0 0-1.4l-1-1a2 2 0 0 0-2.7 0l-.3.3a2 2 0 0 0 0 2.7Z"/><path d="m12 8-8.5 8.5a2.1 2.1 0 1 0 3 3L15 11"/><path d="m15 5 4 4"/></svg></div>
+    <h2>Compétences</h2>
+  </div>
+
+  <div class="skills-grid">
+    <div class="skill-col">
+      <h4><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>Langages</h4>
+      <ul><li>Python</li><li>SQL</li></ul>
+    </div>
+    <div class="skill-col">
+      <h4><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg>Data &amp; Visualisation</h4>
+      <ul><li>Pandas</li><li>Power BI</li><li>Matplotlib / Seaborn</li></ul>
+    </div>
+    <div class="skill-col">
+      <h4><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>Machine Learning</h4>
+      <ul><li>Scikit-learn</li><li>Classification, Régression</li><li>Clustering, NLP</li></ul>
+    </div>
+    <div class="skill-col">
+      <h4><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg>Développement</h4>
+      <ul><li>Streamlit</li><li>Git / GitHub</li></ul>
+    </div>
+    <div class="skill-col">
+      <h4><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>Méthodes</h4>
+      <ul><li>Agile / Scrum</li><li>UX / Personas</li><li>Analyse SWOT</li></ul>
+    </div>
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="split">
+    <div class="info-card">
+      <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>À propos de moi</h3>
+      <p>Consultante en innovation et mobilité, je combine une vision métier acquise sur des projets transport et transformation digitale avec des compétences avancées en data et IA.</p>
+      <p>Curieuse, rigoureuse et orientée impact, j'aime relever des défis et construire des solutions utiles et durables.</p>
+    </div>
+    <div class="info-card">
+      <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>Me contacter</h3>
+      <div class="contact-list">
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-7.2 8-13a8 8 0 1 0-16 0c0 5.8 8 13 8 13Z"/><circle cx="12" cy="9" r="3"/></svg>Houilles (78)</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>hud.lou-anne@laposte.net</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.5 2.1L8 9.7a16 16 0 0 0 6.3 6.3l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.7 2Z"/></svg>06 52 17 21 41</span>
+      </div>
+      <div class="social-row">
+        <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/><path d="M8 21v-7a3 3 0 0 1 6 0v7"/><path d="M14 21v-6a3 3 0 0 1 6 0v6"/></svg></a>
+        <a href="#" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.4 4.4 0 0 0-1.1-3.4c3.7-.4 7.6-1.8 7.6-8.2a6.3 6.3 0 0 0-1.7-4.4 5.9 5.9 0 0 0-.2-4.4s-1.4-.4-4.5 1.7a15.3 15.3 0 0 0-8.2 0C4 -.3 2.6.1 2.6.1a5.9 5.9 0 0 0-.2 4.4A6.3 6.3 0 0 0 .7 8.9c0 6.4 3.9 7.8 7.6 8.2A4.4 4.4 0 0 0 7.2 20v2"/></svg></a>
+        <a href="mailto:hud.lou-anne@laposte.net" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>© 2026 Lou-Anne Hud — Tous droits réservés</footer>
+
+</body>
+</html>
